@@ -1,0 +1,181 @@
+<% layout("/layouts/boilerplate") %>
+
+  <body>
+
+
+    <style>
+      #filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .filter {
+        text-align: center;
+        margin-top: 2rem;
+        margin-right: 2rem;
+        opacity: 0.7;
+
+      }
+
+      .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .filter p {
+        font-size: 0.8rem;
+      }
+
+      #tax-info {
+        display: none;
+      }
+
+      .switch {
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 3rem;
+
+      }
+    </style>
+
+
+    <div id="filters">
+      <div class="filter">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-water"></i>
+        <p>lake
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-volleyball"></i>
+        <p>Volley ball</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-water-ladder"></i>
+        <p>water pools
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beach
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-candy-cane"></i>
+        <p>candyCane
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-cookie"></i>
+        <p>Cookie
+        </p>
+      </div>
+
+      <div class="filter">
+        <i class="fa-solid fa-cookie"></i>
+        <p>Mountain city
+        </p>
+      </div>
+
+
+      <div class="filter">
+        <i class="fa-solid fa-hill-avalanche"></i>
+        <p>Hll-avalanche
+        </p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-mug-hot"></i>
+        <p>with tea</p>
+      </div>
+      <div class="switch">
+        <div class="form-check-reverse form-switch">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+            <label class="form-check-label" for="switchCheckDefault">Total tax after display</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% for(let listing of alllisting){%>
+        <a href="/listings/<%= listing._id %> " class="link-list">
+          <div class="card listing-card">
+            <div class="card-img-container">
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="..." style="height: 20rem;">
+
+              <span class="guest-favourite">
+                Guest favourite
+              </span>
+
+              <% if(currUser) { %>
+                <form action="/listings/<%= listing._id %>/wishlist" method="POST">
+                  <button type="submit" class="wishlist-btn">
+                    <i class="fa-solid fa-heart heart-icon"></i>
+                  </button>
+                </form>
+                <% } %>
+
+            </div>
+            <div class="card-img-overlay">abcd</div>
+
+            <div class="card-body">
+              <p class="card-text">
+                <b>
+                  <%= listing.title %>
+                </b><br>
+                <%= listing.price.toLocaleString("en-IN") %>
+
+                  <i class="tax-info"> &nbsp +18% GST</i>
+                  <br>
+
+                  <% if (listing.reviews.length> 0) { %>
+
+                    ⭐
+                    <%= ( listing.reviews.reduce((sum, review)=> sum + review.rating, 0)
+                      / listing.reviews.length
+                      ).toFixed(1) %>
+
+                      · <%= listing.reviews.length %> reviews
+
+                        <% } else { %>
+
+                          No reviews yet
+
+                          <% } %>
+
+              </p>
+
+
+            </div>
+          </div>
+        </a>
+        <%} %>
+    </div>
+
+    <script>
+      let taxSwitch = document.getElementById("switchCheckDefault")
+      taxSwitch.addEventListener("click", () => {
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for (info of taxInfo) {
+          if (info.style.display != "inline") {
+            info.style.display = "inline";
+
+          } else {
+            info.style.display = "none";
+          }
+        }
+      });
+    </script>
+  </body>

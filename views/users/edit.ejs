@@ -1,0 +1,84 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+
+```
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="profile-card">
+            <h1 class="profile-heading mb-4">
+                Edit Profile
+            </h1>
+            <p class="text-muted mb-4">
+                Update your personal information.
+            </p>
+<form action="/profile?_method=PUT" method="POST">
+                <!-- Email -->
+                <div class="mb-4">
+
+                    <label for="email" class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        value="<%= user.email %>"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- About -->
+                <div class="mb-4">
+
+                    <label for="about" class="form-label">
+                        About me
+                    </label>
+
+                    <textarea
+                        id="about"
+                        name="about"
+                        class="form-control"
+                        rows="6"
+                        maxlength="500"
+                        placeholder="Tell us something about yourself..."
+                    ><%= user.about || "" %></textarea>
+
+                    <div class="form-text">
+                        Maximum 500 characters.
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="d-flex gap-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-dark">
+                        Save Changes
+                    </button>
+
+                    <a
+                        href="/profile"
+                        class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>

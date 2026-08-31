@@ -1,0 +1,153 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container py-5">
+
+        <div class="row">
+
+            <!-- LEFT PROFILE SECTION -->
+            <div class="col-md-4">
+
+                <div class="profile-card">
+
+                    <div class="profile-image">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <h2 class="mt-3">
+                        <%= user.username %>
+                    </h2>
+
+                    <p class="text-muted">
+                        <%= user.email %>
+                    </p>
+
+                    <hr>
+                    <div class="about-section mt-4">
+
+                        <h3>About me</h3>
+
+                        <% if (user.about) { %>
+
+                            <p class="about-text">
+                                <%= user.about %>
+                                
+                            </p>
+
+                            <% } else { %>
+
+                                <p class="text-muted">
+                                    Add something about yourself.
+                                </p>
+
+                                <% } %>
+
+                    </div>
+                    <p>
+                        <i class="fa-solid fa-check me-2"></i>
+                        Identity verified
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-star me-2"></i>
+                        Guest
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-md-8">
+
+                <h1 class="profile-heading">
+                    Welcome, <%= user.username %>!
+                </h1>
+
+                <p class="text-muted">
+                    Manage your profile and your Airbnb activity.
+                </p>
+
+                <div class="profile-options">
+
+                    <!-- Wishlist -->
+                    <a href="/listings/wishlist" class="profile-option">
+
+                        <div class="option-icon">
+                            ❤️
+                        </div>
+
+                        <div>
+                            <h5>Wishlist</h5>
+                            <p>
+                                View your saved listings
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right arrow"></i>
+
+                    </a>
+
+
+                    <!-- My Listings -->
+                    <a href="/listings" class="profile-option">
+
+                        <div class="option-icon">
+                            🏠
+                        </div>
+
+                        <div>
+                            <h5>My Listings</h5>
+                            <p>
+                                Manage your properties
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right arrow"></i>
+
+                    </a>
+
+
+                    <!-- Edit Profile -->
+<a href="/profile/edit" class="profile-option">
+                        <div class="option-icon">
+                            ✏️
+                        </div>
+
+                        <div>
+                            <h5>Edit Profile</h5>
+                            <p>
+                                Update your personal information
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right arrow"></i>
+
+                    </a>
+
+
+                    <!-- Logout -->
+                    <a href="/logout" class="profile-option">
+
+                        <div class="option-icon">
+                            🚪
+                        </div>
+
+                        <div>
+                            <h5>Logout</h5>
+                            <p>
+                                Sign out of your account
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right arrow"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
